@@ -2,9 +2,11 @@ import grpc
 import users_pb2
 import users_pb2_grpc
 
+SERVER = "<your_server>:50051"
+
 
 def run_os_request():
-    channel = grpc.insecure_channel("localhost:50051")
+    channel = grpc.insecure_channel(SERVER)
     stub = users_pb2_grpc.UserServiceStub(channel)
 
     os_request = users_pb2.OSRequest(preferred_os="Linux")
@@ -32,4 +34,4 @@ def run_insert():
 
 
 if __name__ == "__main__":
-    run_insert()
+    run_os_request()

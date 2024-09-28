@@ -12,7 +12,14 @@ RUN apt-get update && apt-get install -y \
 EXPOSE 6379
 
 # Add python code
-RUN pip install redis
+RUN pip install redis grpcio grpcio-tools
+
+RUN mkdir -p "/apps"
+
+COPY . /apps
+
+WORKDIR /apps
+
 
 # Start both Python and Redis
 CMD ["redis-server", "--daemonize", "no"]

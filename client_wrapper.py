@@ -6,6 +6,7 @@ import json
 
 # Connect to Redis
 redis_client = redis.Redis(host="localhost", port=6379, db=0)
+SERVER = "<YOUR_SERVER>:50051"
 
 
 # Helper function to cache data
@@ -80,7 +81,7 @@ def get_users_by_os_from_grpc(stub, preferred_os):
 
 def run():
     # Connect to the gRPC server
-    channel = grpc.insecure_channel("localhost:50051")
+    channel = grpc.insecure_channel(SERVER)
     stub = users_pb2_grpc.UserServiceStub(channel)
 
     # Get all users
